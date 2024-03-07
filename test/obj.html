@@ -56,20 +56,16 @@
 
   class Square extends Shape {
     constructor(sideLength) {
-      super(sideLength)
-      this.name = 'square'
-      this.sides = 4
+      super('square', 4, sideLength)
     }
 
     calcArea() {
-      console.log('22', this.sides, this.sideLength)
       return this.sides * this.sideLength
     }
   }
 
   const sq1 = new Square(5)
-  console.log(sq1.calcArea())
-
+ console.log(sq1.calcArea())
 
 
 </script>
