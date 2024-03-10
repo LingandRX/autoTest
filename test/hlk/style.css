@@ -1,0 +1,148 @@
+/* 默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul li {
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/* body */
+body {
+    width: 1500px;
+    margin: 0 auto;
+}
+
+/* header */
+header {
+    display: flex;
+    height: 150px;
+    border-bottom: 1px solid blue;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    
+    margin-right: calc(800px - 80px);
+}
+
+#logo img {
+    height: 70%;
+}
+
+nav {
+    display: inline;
+    float: left;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+header li {
+    margin: 0 20px;
+    line-height: 150px;
+    width: 80px;
+    height: 100px;
+    border-bottom: 2px solid rgb(63, 158, 255);
+}
+
+header li a {
+    display: flex;
+    justify-content: center;
+}
+
+#login {
+    display: flex;
+    align-items: center;
+}
+
+#login a {
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid rgb(221, 223, 230);
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+#login a:hover {
+    background-color: rgb(236, 245, 255);
+    border: 1px solid rgb(198, 226, 255);
+}
+
+/* main */
+main .category {
+    margin: 20px auto;
+}
+
+main ul {
+    margin: 20px auto;
+}
+
+.imgs {
+    height: 100px;
+    width: 150px;
+    display: block;
+}
+
+main li {
+    font-size: 20px;
+    width: 150px;
+    display: inline-block;
+
+    margin: 10px 10px 0;
+}
+
+main li a {
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    line-height: 40px;
+}
+
+main a {
+    height: 100%;
+    width: 100%;
+    color: rgb(63, 158, 255);
+    display: inline-block
+}
+
+main a:hover {
+    background-color: rgb(63, 158, 255);
+    color: rgb(255, 255, 255);
+}
+
+#devTools a:hover {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+#stging a:hover,
+#test a:hover {
+    border-radius: 4px;
+}
+
+/* footer */
+footer {
+    height: 80px;
+}
+
+footer p {
+    font-size: 14px;
+    text-align: center;
+    line-height: 80px;
+}
