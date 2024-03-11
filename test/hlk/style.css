@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 a {
@@ -17,56 +18,67 @@ ul li {
 
 /* body */
 body {
-    width: 1500px;
+    width: 2000px;
     margin: 0 auto;
 }
 
 /* header */
 header {
-    display: flex;
+    /* display: flex; */
     height: 150px;
     border-bottom: 1px solid blue;
+    clear: both;
 }
 
 #logo {
-    display: flex;
+    /* display: flex; */
+    float: left;
     justify-content: center;
     align-items: center; 
     
-    margin-right: calc(800px - 80px);
+    /* margin-right: 64%; */
 }
 
 #logo img {
-    height: 70%;
+    /* height: 70%; */
+    height: 150px;
 }
 
 nav {
+    float: right;
     display: inline;
-    float: left;
+    /* float: left; */
 }
 
 nav ul {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
 }
 
 header li {
+    display: inline-block;
     margin: 0 20px;
-    line-height: 150px;
     width: 80px;
-    height: 100px;
-    border-bottom: 2px solid rgb(63, 158, 255);
-}
-
-header li a {
-    display: flex;
     justify-content: center;
 }
 
-#login {
-    display: flex;
-    align-items: center;
+header li a {
+    display: block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: rgb(144, 147, 153);
+}
+/*
+header .select {
+    border-bottom: 2px solid rgb(63, 158, 255);
+}
+
+header .select a {
+    color: #000;
+}
+
+header a:hover {
+    color: #000;
 }
 
 #login a {
@@ -79,6 +91,7 @@ header li a {
     margin: 0 auto;
 }
 
+*/
 #login a:hover {
     background-color: rgb(236, 245, 255);
     border: 1px solid rgb(198, 226, 255);
@@ -103,8 +116,9 @@ main li {
     font-size: 20px;
     width: 150px;
     display: inline-block;
-
+    box-shadow: 0px 0px 8px 2px rgb(0, 0, 0, 0.2);
     margin: 10px 10px 0;
+    border-radius: 4px;
 }
 
 main li a {
@@ -112,6 +126,7 @@ main li a {
     width: 150px;
     text-align: center;
     line-height: 40px;
+
 }
 
 main a {
@@ -139,6 +154,10 @@ main a:hover {
 /* footer */
 footer {
     height: 80px;
+
+    position: fixed;
+    bottom: 0;
+    left: 50%;
 }
 
 footer p {
