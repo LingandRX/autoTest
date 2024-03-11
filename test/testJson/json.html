@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8"/>
-    <title>JSON: Task 1</title>
-    <style>
-      p {
-        color: purple;
-        margin: 0.5em 0;
-      }
 
-      * {
-        box-sizing: border-box;
-      }
-    </style>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>JSON: Task 1</title>
+  <style>
+    p {
+      color: purple;
+      margin: 0.5em 0;
+    }
 
-  <body>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <section class="preview">
+<body>
+
+  <section class="preview">
 
 
 
-    </section>
+  </section>
 
-  </body>
-  <script>
-    const section = document.querySelector('section');
+</body>
+<script>
 
-    let para1 = document.createElement('p');
-    let para2 = document.createElement('p');
-    let motherInfo = 'The mother cats are called ';
-    let kittenInfo;
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
+  getJson()
+  const section = document.querySelector('section');
 
-    fetch(requestURL)
+  let para1 = document.createElement('p');
+  let para2 = document.createElement('p');
+  let motherInfo = 'The mother cats are called ';
+  let kittenInfo;
+  const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
+
+  fetch(requestURL)
     .then(response => response.text())
     .then(text => displayCatInfo(text))
 
-    function displayCatInfo(catString) {
-      let total = 0;
-      let male = 0;
-      
-      console.log(JSON.parse(catString))
+  function displayCatInfo(catString) {
+    let total = 0;
+    let male = 0;
 
-      // Add your code here
-      kittenInfo = ''
-      catObj = JSON.parse(catString)
-      for(const cat of catObj) {
-        motherInfo = motherInfo + cat.name + ' '
-        console.log(cat)
-        for (const kitten of cat.kittens) {
-            console.log(kitten)
-            if (kitten.gender === 'm') {
-                kittenInfo += kitten.name + ' '
-            }
+    console.log(JSON.parse(catString))
+
+    // Add your code here
+    kittenInfo = ''
+    catObj = JSON.parse(catString)
+    for (const cat of catObj) {
+      motherInfo = motherInfo + cat.name + ' '
+      console.log(cat)
+      for (const kitten of cat.kittens) {
+        console.log(kitten)
+        if (kitten.gender === 'm') {
+          kittenInfo += kitten.name + ' '
         }
       }
-      // Don't edit the code below here!
-
-      para1.textContent = motherInfo;
-      para2.textContent = kittenInfo;
     }
+    // Don't edit the code below here!
 
-    section.appendChild(para1);
-    section.appendChild(para2);
-  </script>
+    para1.textContent = motherInfo;
+    para2.textContent = kittenInfo;
+  }
+
+  section.appendChild(para1);
+  section.appendChild(para2);
+</script>
 
 </html>
