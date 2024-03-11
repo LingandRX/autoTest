@@ -24,9 +24,12 @@ body {
 
 /* header */
 header {
-    /* border-bottom: 1px solid blue; */
+    /* position: fixed; */
     box-shadow: 0 1px 1px 0px rgb(0, 0, 0, 0.2);
     height: 75px;
+    /* background-color: #fff; */
+    /* display: flex; */
+    overflow: auto;
 }
 
 header::after {
@@ -89,6 +92,11 @@ header a:hover {
 }
 
 /* main */
+main {
+    height: 1000px;
+    overflow: auto;
+}
+
 main .category {
     margin: 20px auto;
 }
