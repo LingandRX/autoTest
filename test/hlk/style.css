@@ -18,57 +18,50 @@ ul li {
 
 /* body */
 body {
-    width: 2000px;
+    width: 1500px;
     margin: 0 auto;
 }
 
 /* header */
 header {
-    /* display: flex; */
-    height: 150px;
-    border-bottom: 1px solid blue;
+    /* border-bottom: 1px solid blue; */
+    box-shadow: 0 1px 1px 0px rgb(0, 0, 0, 0.2);
+    height: 75px;
+}
+
+header::after {
+    content: "";
+    display: table;
     clear: both;
 }
 
 #logo {
-    /* display: flex; */
     float: left;
-    justify-content: center;
-    align-items: center; 
-    
-    /* margin-right: 64%; */
 }
 
 #logo img {
-    /* height: 70%; */
-    height: 150px;
+    height: 70px;
 }
 
 nav {
     float: right;
-    display: inline;
-    /* float: left; */
-}
-
-nav ul {
+    line-height: 75px;
 }
 
 header li {
     display: inline-block;
     margin: 0 20px;
     width: 80px;
-    justify-content: center;
 }
 
 header li a {
     display: block;
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     color: rgb(144, 147, 153);
 }
-/*
+
 header .select {
     border-bottom: 2px solid rgb(63, 158, 255);
 }
@@ -82,16 +75,14 @@ header a:hover {
 }
 
 #login a {
-    height: 30px;
-    width: 80px;
-    text-align: center;
-    line-height: 30px;
+    color: #000;
+    height: 40px;
+    line-height: 40px;
     border: 1px solid rgb(221, 223, 230);
     border-radius: 4px;
     margin: 0 auto;
 }
 
-*/
 #login a:hover {
     background-color: rgb(236, 245, 255);
     border: 1px solid rgb(198, 226, 255);
@@ -153,9 +144,8 @@ main a:hover {
 
 /* footer */
 footer {
-    height: 80px;
-
     position: fixed;
+    height: 80px;
     bottom: 0;
     left: 50%;
 }
