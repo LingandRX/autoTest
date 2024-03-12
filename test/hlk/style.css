@@ -25,36 +25,37 @@ body {
 /* header */
 /*  */
 #post-login {
-  width: 200px;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  position: absolute;
-  display: none;
-  background-color: #fff;
+    width: 200px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    position: absolute;
+    display: none;
+    background-color: #fff;
 }
 
 #login-button,
 .label-name,
-label, 
+label,
 input {
-  margin: 4px auto;
-  display: block;
+    margin: 4px auto;
+    display: block;
 }
 
 .label-name,
 #login-button,
 #password,
 #username {
-  width: 80%;
+    width: 80%;
 }
+
 /*  */
-#login:hover #post-login{
+#login:hover #post-login {
     display: block;
 }
 
 .label-name {
     height: 20px;
     line-height: 20px;
-  }
+}
 
 header {
     /* position: fixed; */
@@ -127,7 +128,6 @@ header a:hover {
 /* main */
 main {
     height: 1000px;
-    /* overflow: auto; */
 }
 
 main .category {
