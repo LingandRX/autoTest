@@ -1,40 +1,168 @@
 {
     "devTools": [
-        {"name": "Gitlab", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Mantis", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Jenkins", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "禅道", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "腾讯文档", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "慕客文档", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "CoDesign", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "YApi", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "堡垒机", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "堡垒机", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Nacos", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Iconfont", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Kibana", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "Sentinel", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "RocketMQ dev", "src": "javascript:;", "images": "./images/OIP.jpg"},
-        {"name": "RocketMQ Test", "src": "javascript:;", "images": "./images/OIP.jpg"}
+        {
+            "name": "Gitlab",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Mantis",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Jenkins",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "禅道",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "腾讯文档",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "慕客文档",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "CoDesign",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "YApi",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "堡垒机",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "堡垒机",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Nacos",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Iconfont",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Kibana",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "Sentinel",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "RocketMQ dev",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        },
+        {
+            "name": "RocketMQ Test",
+            "src": "javascript:;",
+            "images": "./images/OIP.jpg"
+        }
     ],
     "test": [
-        {"name": "Test1 收银台", "src": "javascript:;", "images": ""},
-        {"name": "Test1 小掌柜", "src": "javascript:;", "images": ""},
-        {"name": "Test1 美一客", "src": "javascript:;", "images": ""},
-        {"name": "Test2 收银台", "src": "javascript:;", "images": ""},
-        {"name": "Test2 小掌柜", "src": "javascript:;", "images": ""},
-        {"name": "Test2 美一客", "src": "javascript:;", "images": ""},
-        {"name": "Test3 收银台", "src": "javascript:;", "images": ""},
-        {"name": "Test3 小掌柜", "src": "javascript:;", "images": ""},
-        {"name": "Test3 美一客", "src": "javascript:;", "images": ""},
-        {"name": "开发环境 慧来客", "src": "javascript:;", "images": ""},
-        {"name": "测试环境 慧来客", "src": "javascript:;", "images": ""}
+        {
+            "name": "Test1 收银台",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test1 小掌柜",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test1 美一客",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test2 收银台",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test2 小掌柜",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test2 美一客",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test3 收银台",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test3 小掌柜",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Test3 美一客",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "开发环境 慧来客",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "测试环境 慧来客",
+            "src": "javascript:;",
+            "images": ""
+        }
     ],
     "stging": [
-        {"name": "STG 收银台", "src": "javascript:;", "images": ""},
-        {"name": "STG2 收银台", "src": "javascript:;", "images": ""},
-        {"name": "STG 小掌柜", "src": "javascript:;", "images": ""},
-        {"name": "STG 美一客", "src": "javascript:;", "images": ""},
-        {"name": "Stging 慧来客", "src": "javascript:;", "images": ""}
+        {
+            "name": "STG 收银台",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "STG2 收银台",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "STG 小掌柜",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "STG 美一客",
+            "src": "javascript:;",
+            "images": ""
+        },
+        {
+            "name": "Stging 慧来客",
+            "src": "javascript:;",
+            "images": ""
+        }
     ]
 }
