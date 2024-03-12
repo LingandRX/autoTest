@@ -8,6 +8,9 @@
 </head>
 
 <body>
+
+    <p id="name">111</p>
+    <p id="age"></p>
     <script>
         // const { request } = require("http")
 
@@ -20,7 +23,21 @@
             request.onload = function () {
                 let data = JSON.parse(request.responseText)
                 console.log(data)
+                setInfo(data)
             }
+        }
+
+        function setInfo(jsonData) {
+            if (jsonData) {
+                const name = document.querySelector('#name')
+                const age = document.querySelector('#age')
+                name.textContent = jsonData.name
+                age.textContent = jsonData.age
+                console.log(name.textContent)
+            } else {
+                console.log('----')
+            }
+
         }
 
         getJson()

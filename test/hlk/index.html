@@ -15,8 +15,22 @@
             <ul>
                 <li class="select"><a href="javascript:;">首页</a></li>
                 <li><a href="javascript:;">数据字典</a></li>
-                <li id="login"><a href="javascript:;">登录</a></li>
-            </ul>   
+                <li id="login"><a href="javascript:;">登录</a>
+                    <form method="post" action="" id="post-login">
+                        <div>
+                            <label>
+                                <div class="label-name">账号</div><input type="text" id="username">
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <div class="label-name">密码</div><input type="password" id="password">
+                            </label>
+                        </div>
+                        <button type="submit" id="login-button">登录</button>
+                    </form>
+                </li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -26,30 +40,6 @@
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Gitlab</a></li>
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Mantis</a></li>
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">Jenkins</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
-                <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">禅道</a></li>
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">腾讯文档</a></li>
                 <li><img src="images/OIP.jpg" class="imgs"><a href="javascript:;" class="tools">慕客文档</a></li>
@@ -81,6 +71,7 @@
     <footer>
         <p>美管加开发者中心</p>
     </footer>
+    <script src="main.js"></script>
 </body>
 
 </html>
