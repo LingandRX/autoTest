@@ -12,11 +12,9 @@
     <p id="name">111</p>
     <p id="age"></p>
     <script>
-        // const { request } = require("http")
-
         async function getJson() {
             let url = './test.json'
-            var request = new XMLHttpRequest()
+/*             var request = new XMLHttpRequest()
             request.open('get', url)
             request.send(null)
 
@@ -24,23 +22,48 @@
                 let data = JSON.parse(request.responseText)
                 console.log(data)
                 setInfo(data)
-            }
+            } */
+
+            const request = new Request(url);
+            const response = await fetch(request);
+            const jsonData = await response.json();
+            console.log(jsonData);
+            saveInfo(jsonData);
         }
 
         function setInfo(jsonData) {
             if (jsonData) {
-                const name = document.querySelector('#name')
-                const age = document.querySelector('#age')
-                name.textContent = jsonData.name
-                age.textContent = jsonData.age
-                console.log(name.textContent)
+                const name = document.querySelector('#name');
+                const age = document.querySelector('#age');
+                name.textContent = jsonData.name;
+                age.textContent = jsonData.age;
+                console.log(name.textContent);
             } else {
-                console.log('----')
+                console.log('----');
             }
 
         }
 
-        getJson()
+
+        /* 读取json文件，存储到localStorage中 */
+        function saveInfo(jsonData) {
+            const keys = Object.keys(jsonData);
+            keys.forEach((key) => {
+                // 以字符串形式存储数组
+                if (Array.isArray(jsonData[key])) {
+                    localStorage.setItem(key, JSON.stringify(jsonData[key]));
+                } else {
+                    localStorage.setItem(key, jsonData[key]);
+                }
+            });
+            
+            keys.forEach((key) => {
+                console.log(localStorage.getItem(key));
+            });
+            
+        }
+
+        getJson();
     </script>
 </body>
 
