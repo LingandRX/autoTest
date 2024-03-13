@@ -1,3 +1,4 @@
+/* 解析json文件内容，执行设置工具 */
 async function setData() {
     let url = "./index.json"
     const request = new Request(url)
@@ -7,6 +8,7 @@ async function setData() {
     setTools(all)
 }
 
+/* 根据获取的对象，设置ul-li */
 function setTools(obj) {
     if (!obj) {
         return 'obj is null'

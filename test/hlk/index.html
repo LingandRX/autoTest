@@ -19,17 +19,21 @@
                 <li><a href="javascript:;">数据字典</a></li>
                 <li id="login"><a href="javascript:;">登录</a>
                     <form method="post" action="" id="post-login">
-                        <div>
-                            <label>
-                                <div class="label-name">账号</div><input type="text" id="username">
+                        <div class="label-div">
+                            <label for="username">
+                                <div class="label-name">账号</div>
+                                <input type="text" name="username" id="username" / required>
                             </label>
                         </div>
-                        <div>
-                            <label>
-                                <div class="label-name">密码</div><input type="password" id="password">
+                        <div class="label-div">
+                            <label for="password">
+                                <div class="label-name">密码</div>
+                                <input type="password" name="password" id="password" />
                             </label>
                         </div>
-                        <button type="submit" id="login-button">登录</button>
+                        <div class="submit-div">
+                            <button type="submit" id="login-button">登录</button>
+                        </div>
                     </form>
                 </li>
             </ul>

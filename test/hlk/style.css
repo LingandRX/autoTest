@@ -28,27 +28,28 @@ body {
 /* header */
 /*  */
 #post-login {
-    width: 200px;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
     position: absolute;
+    width: 200px;
+    box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.2);
+    justify-content: center;
     display: none;
     background-color: #fff;
+    border-radius: 4px;
 }
 
-#login-button,
-.label-name,
-label,
-input {
-    margin: 4px auto;
-    display: block;
-}
-
-.label-name,
-#login-button,
-#password,
-#username {
+#post-login .label-div,
+.submit-div {
+    margin: 5px auto;
     width: 80%;
 }
+
+#post-login input,
+button {
+    width: 100%;
+}
+
 /*  */
 
 #login:hover #post-login {
