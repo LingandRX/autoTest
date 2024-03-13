@@ -18,8 +18,11 @@ ul li {
 
 /* body */
 body {
-    width: 1500px;
+    width: 80%;
     margin: 0 auto;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 /* header */
@@ -46,8 +49,8 @@ input {
 #username {
     width: 80%;
 }
-
 /*  */
+
 #login:hover #post-login {
     display: block;
 }
@@ -58,31 +61,25 @@ input {
 }
 
 header {
-    /* position: fixed; */
-    /* box-shadow: 0 1px 1px 0px rgb(0, 0, 0, 0.2); */
-    height: 75px;
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-    /* display: flex; */
-    /* overflow: auto; */
 }
 
-header::after {
-    content: "";
-    display: table;
-    clear: both;
+nav {
+    display: flex;
 }
 
 #logo {
-    float: left;
+    margin-right: auto;
 }
 
 #logo img {
     height: 70px;
 }
 
-nav {
-    float: right;
-    line-height: 75px;
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header li {
@@ -185,10 +182,9 @@ main a:hover {
 
 /* footer */
 footer {
-    position: fixed;
-    height: 80px;
-    bottom: 0;
-    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer p {

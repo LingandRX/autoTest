@@ -17,12 +17,12 @@
         },
         {
             "name": "禅道",
-            "src": "javascript:;",
+            "src": "http://zentao.meiguanjia.net/zentaopms/www/index.php?m=project&f=story&projectID=142",
             "images": "./images/OIP.jpg"
         },
         {
             "name": "腾讯文档",
-            "src": "javascript:;",
+            "src": "https://docs.qq.com/desktop",
             "images": "./images/OIP.jpg"
         },
         {
