@@ -1,60 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>点击弹出窗口</title>
+    <title>Document</title>
     <style>
-        /* 隐藏弹出窗口 */
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            z-index: 999;
+        * {
+            box-sizing: border-box;
         }
-
-        /* 显示弹出窗口的条件 */
-        #popup-trigger:checked + #popup {
-            display: block;
+        .account {
+            width: 360px;
         }
-
-        /* 蒙版样式 */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .account-input{
+            background-color: rgba(0, 0, 0, 0);
+            height: 60px;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998;
+            padding: 30px 20px 10px;
+            display: block;
+            border: 0;
+        }
+        .form-field {
+            background-color: rgb(252, 242, 243);
+            /* background-color: #000; */
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .form-control {
+            position: relative;
+        }
+        .floating-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 17px;
+            height: 20px;
+            line-height: 20px;
+            color: red;
+            transition: transform 1s;
         }
 
-        /* 显示蒙版的条件 */
-        #popup-trigger:checked + #overlay {
-            display: block;
+        .floating-label-above {
+            top: 10px;
+            font-size: 12px;
+        }
+        .form-helper {
+            font-size: 12px;
+            color: red;
         }
     </style>
 </head>
+
 <body>
+    <div class="account">
+        <!-- <div class="form-field">222</div> -->
+        <div class="form-field">
+            <div class="form-control">
+                <div>
+                    <input class="account-input" type="text" value>
+                    <label class="floating-label">邮箱/手机号码/小米ID</label>
+                    <!-- <label class="floating-label floating-label-above">邮箱/手机号码/小米ID</label> -->
+                </div>
 
-<!-- 触发弹出窗口的复选框 -->
-<input type="checkbox" id="popup-trigger">
+            </div>
+        </div>
+        <div class="form-helper">
+            请输入账号
+        </div>
+    </div>
 
-<!-- 弹出窗口内容 -->
-<div id="popup">
-    <h2>弹出窗口内容</h2>
-    <p>这是一个弹出窗口示例。</p>
-    <label for="popup-trigger">关闭</label>
-</div>
-
-<!-- 背景蒙版 -->
-<div id="overlay"></div>
-
+    <script>
+        const accountInput = document.querySelector('.account-input');
+        const floatingLabel = document.querySelector('.floating-label');
+        console.log(floatingLabel);
+        accountInput.addEventListener('focus', () => {
+            floatingLabel.setAttribute('class', 'floating-label floating-label-above');
+        });
+        
+        accountInput.addEventListener('blur', () => {
+            floatingLabel.setAttribute('class', 'floating-label');
+        });
+    </script>
 </body>
+
 </html>
