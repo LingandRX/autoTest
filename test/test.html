@@ -10,10 +10,13 @@
             box-sizing: border-box;
         }
 
+        .password,
         .account {
             width: 360px;
+            margin: 10px auto ;
         }
 
+        .password-input,
         .account-input {
             background-color: rgba(0, 0, 0, 0);
             height: 60px;
@@ -24,6 +27,7 @@
         }
 
         /* .account-inputP:focus-v */
+        .password-input:focus-visible,
         .account-input:focus-visible {
             /* border-color: rgb(255, 92, 0); */
             outline-color: rgb(255, 92, 0);
@@ -99,76 +103,74 @@
         const parentAccount = document.querySelector('.account');
         const formField = document.querySelector('.form-field');
         const accountInput = document.querySelector('.account-input');
-        const floatingLabel = document.querySelector('.floating-label');
+        const passwordInput = document.querySelector('.password-input');
+        // const floatingLabels = document.querySelectorAll('.floating-label');
         // 创建formHelper
         const formHelperAccount= createDivClass('form-helper', '请输入账号');
         const formHelperPassword= createDivClass('form-helper', '请输入密码');
-
-        accountInput.addEventListener('focus', () => {
-            floatingLabel.classList.add('floating-label-above');
-        });
         
-        accountInput.addEventListener('blur', () => {
-            if (!accountInput.value) {
-                floatingLabel.classList.remove('floating-label-above');
-            }
-
-        });
+        toggleAboveEvent(accountInput);
+        toggleAboveEvent(passwordInput);
+              
         
-        // 检查input输入框
-        accountInput.addEventListener('input', () => {
-            if (!(accountInput.value) && !parentAccount.children[1]) {
-                // input的value为空，并且没有子元素
-                floatingLabel.classList.add('floating-label-error');
-                formField.classList.add('form-field-error');
-                parentAccount.appendChild(formHelperAccount);
-            } else if (accountInput.value) {
-                console.log('11');
-                floatingLabel.classList.remove('floating-label-error');
-                formField.classList.remove('form-field-error');
-
-                const formHelperAccountTemp = document.querySelector('.form-helper');
-                if (formHelperAccountTemp) parentAccount.removeChild(formHelperAccountTemp);
-            }
-        });
-
-        accountInput.addEventListener('focus', () => {
-            floatingLabel.classList.add('floating-label-above');
-        });
+        function toggleError(elementInput) {
+            // 获取当前input第一个className
+            const nowClassName = elementInput.className.split(' ')[0];
+            // 根据获取class的邻近兄弟
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);    
+            
+            // 检查input输入框
+            elementInput.addEventListener('input', () => {
+                if (!(elementInput.value) && !parentAccount.children[1]) {
+                    // input的value为空，并且没有子元素
+                    floatingLabel.classList.add('floating-label-error');
+                    formField.classList.add('form-field-error');
+                    console.log('111');
+                    parentAccount.appendChild(formHelperAccount);
+                } else if (elementInput.value) {
+                    console.log('11');
+                    floatingLabel.classList.remove('floating-label-error');
+                    formField.classList.remove('form-field-error');
+    
+                    const formHelperAccountTemp = document.querySelector('.form-helper');
+                    if (formHelperAccountTemp) parentAccount.removeChild(formHelperAccountTemp);
+                }
+            });
+        }
         
-        accountInput.addEventListener('blur', () => {
-            if (!accountInput.value) {
-                floatingLabel.classList.remove('floating-label-above');
-            }
-
-        });
-        
-        // 检查input输入框
-        accountInput.addEventListener('input', () => {
-            if (!(accountInput.value) && !parentAccount.children[1]) {
-                // input的value为空，并且没有子元素
-                floatingLabel.classList.add('floating-label-error');
-                formField.classList.add('form-field-error');
-                parentAccount.appendChild(formHelperAccount);
-            } else if (accountInput.value) {
-                console.log('11');
-                floatingLabel.classList.remove('floating-label-error');
-                formField.classList.remove('form-field-error');
-
-                const formHelperAccountTemp = document.querySelector('.form-helper');
-                if (formHelperAccountTemp) parentAccount.removeChild(formHelperAccountTemp);
-            }
-        });
-
-        /*  */
+        /* 
+            创建div
+         */
         function createDivClass(classStr, contentStr) {
             const element = document.createElement('div');
             element.setAttribute('class', 'form-helper');
-            element.textContent = '请输入账号';
+            element.textContent = contentStr;
             return element;
         }
-
-    </script>
+        
+        /* 
+            above事件
+         */
+        function toggleAboveEvent(elementInput) {
+            // 获取当前input第一个className
+            const nowClassName = elementInput.className.split(' ')[0];
+            console.log(nowClassName);
+            // 根据获取class的邻近兄弟
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);            
+            elementInput.addEventListener('focus', () => {
+                if (floatingLabel) {
+                    floatingLabel.classList.add('floating-label-above');
+                }
+            });
+            
+            elementInput.addEventListener('blur', () => {
+                if (!elementInput.value && floatingLabel) {
+                    floatingLabel.classList.remove('floating-label-above');
+                }
+            });            
+        }
+        
+        </script>
 </body>
 
 </html>
