@@ -13,7 +13,7 @@
         .password,
         .account {
             width: 360px;
-            margin: 10px auto ;
+            margin: 10px auto;
         }
 
         .password-input,
@@ -41,7 +41,7 @@
             overflow: hidden;
             transform: all 0.1s ease;
         }
-        
+
         .form-field-error {
             background-color: rgb(252, 242, 243);
         }
@@ -59,14 +59,15 @@
             line-height: 20px;
             transition: all 0.1s ease-in-out 0.1s;
         }
-        
+
         .floating-label-above {
             top: 10px;
             font-size: 12px;
             color: #aaa;
         }
+
         .floating-label-error {
-            
+
             color: red;
         }
 
@@ -79,65 +80,85 @@
 
 <body>
     <div class="account">
-        <div class="form-field form-field-error">
+        <!-- <div class="form-field form-field-error"> -->
+        <div class="form-field">
             <div class="form-control">
                 <div>
                     <input class="account-input" type="text" name="account" value required>
-                    <label class="floating-label floating-label-error">邮箱/手机号码/小米ID</label>
+                    <!-- <label class="floating-label floating-label-error">邮箱/手机号码/小米ID</label> -->
+                    <label class="floating-label">邮箱/手机号码/小米ID</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="password">
-        <div class="form-field form-field-error">
+        <div class="form-field">
+        <!-- <div class="form-field form-field-error"> -->
             <div class="form-control">
                 <div>
                     <input class="password-input" type="password" name="password" value required>
-                    <label class="floating-label floating-label-error">密码</label>
+                    <!-- <label class="floating-label floating-label-error">密码</label> -->
+                    <label class="floating-label">密码</label>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const parentAccount = document.querySelector('.account');
-        const formField = document.querySelector('.form-field');
         const accountInput = document.querySelector('.account-input');
         const passwordInput = document.querySelector('.password-input');
-        // const floatingLabels = document.querySelectorAll('.floating-label');
-        // 创建formHelper
-        const formHelperAccount= createDivClass('form-helper', '请输入账号');
-        const formHelperPassword= createDivClass('form-helper', '请输入密码');
-        
+
         toggleAboveEvent(accountInput);
         toggleAboveEvent(passwordInput);
-              
-        
+        toggleError(accountInput);
+        toggleError(passwordInput);
+        /* Error事件 */
         function toggleError(elementInput) {
             // 获取当前input第一个className
-            const nowClassName = elementInput.className.split(' ')[0];
+            const nowClassName = getFirstClassName(elementInput);
             // 根据获取class的邻近兄弟
-            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);    
-            
-            // 检查input输入框
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);
+            // 获取input最高级别的父盒子
+            const parentDiv = getInputParent(elementInput);
+            // 获取子盒子
+            const formField = parentDiv.children[0];
+
+            let formHelper = createDivClass('form-helper', ((nowClassName) => {
+                switch (nowClassName) {
+                    case 'account':
+                        return '请输入账号';
+                    case 'password':
+                        return '请输入密码';
+                }
+            })(parentDiv.className));
+
             elementInput.addEventListener('input', () => {
-                if (!(elementInput.value) && !parentAccount.children[1]) {
+                if (!(elementInput.value) && !parentDiv.children[1]) {
                     // input的value为空，并且没有子元素
                     floatingLabel.classList.add('floating-label-error');
                     formField.classList.add('form-field-error');
-                    console.log('111');
-                    parentAccount.appendChild(formHelperAccount);
+                    // console.log('111');
+
+                    parentDiv.appendChild(formHelper);
                 } else if (elementInput.value) {
-                    console.log('11');
                     floatingLabel.classList.remove('floating-label-error');
                     formField.classList.remove('form-field-error');
-    
-                    const formHelperAccountTemp = document.querySelector('.form-helper');
-                    if (formHelperAccountTemp) parentAccount.removeChild(formHelperAccountTemp);
+                    if (parentDiv.children[1])
+                        parentDiv.removeChild(parentDiv.children[1]);
+                }
+            });
+
+            elementInput.addEventListener('blur', () => {
+                if (!(elementInput.value) && !parentDiv.children[1]) {
+                    // input的value为空，并且没有子元素
+                    floatingLabel.classList.add('floating-label-error');
+                    formField.classList.add('form-field-error');
+
+                    parentDiv.appendChild(formHelper);
                 }
             });
         }
-        
+
         /* 
             创建div
          */
@@ -147,30 +168,50 @@
             element.textContent = contentStr;
             return element;
         }
-        
+
         /* 
             above事件
          */
         function toggleAboveEvent(elementInput) {
             // 获取当前input第一个className
-            const nowClassName = elementInput.className.split(' ')[0];
-            console.log(nowClassName);
+            const nowClassName = getFirstClassName(elementInput);
+            // console.log(nowClassName);
             // 根据获取class的邻近兄弟
-            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);            
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);
             elementInput.addEventListener('focus', () => {
                 if (floatingLabel) {
                     floatingLabel.classList.add('floating-label-above');
                 }
             });
-            
+
             elementInput.addEventListener('blur', () => {
                 if (!elementInput.value && floatingLabel) {
                     floatingLabel.classList.remove('floating-label-above');
                 }
-            });            
+            });
         }
-        
-        </script>
+
+        /*
+            获取className的一个class 
+         */
+        function getFirstClassName(element) {
+            firstClassName = element.className.split(' ')[0];
+            return firstClassName;
+        }
+        /* 
+            递归调用获取顶层父盒子
+         */
+        function getInputParent(children) {
+            if (!children) {
+                return Error;
+            }
+            if (getFirstClassName(children) === 'form-field') {
+                return children.parentNode;
+            }
+            return getInputParent(children = children.parentNode);
+        }
+
+    </script>
 </body>
 
 </html>
