@@ -1,60 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>点击弹出窗口</title>
+    <title>Document</title>
     <style>
-        /* 隐藏弹出窗口 */
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            z-index: 999;
+        * {
+            box-sizing: border-box;
         }
 
-        /* 显示弹出窗口的条件 */
-        #popup-trigger:checked + #popup {
-            display: block;
+        .password,
+        .account {
+            width: 360px;
+            margin: 10px auto;
         }
 
-        /* 蒙版样式 */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .password-input,
+        .account-input {
+            background-color: rgba(0, 0, 0, 0);
+            height: 60px;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998;
+            padding: 30px 20px 10px;
+            display: block;
+            border-width: 0;
         }
 
-        /* 显示蒙版的条件 */
-        #popup-trigger:checked + #overlay {
-            display: block;
+        .password-input:focus-visible,
+        .account-input:focus-visible {
+            outline-color: rgb(255, 92, 0);
+        }
+
+        .form-field {
+            background-color: rgb(249, 249, 249);
+            /* background-color: #000; */
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            transform: all 0.1s ease;
+        }
+
+        .form-field-error {
+            background-color: rgb(252, 242, 243);
+        }
+
+        .form-control {
+            position: relative;
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 17px;
+            height: 20px;
+            line-height: 20px;
+            transition: all 0.1s ease-in-out 0.1s;
+        }
+
+        .floating-label-above {
+            top: 10px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .floating-label-error {
+
+            color: red;
+        }
+
+        .form-helper {
+            font-size: 12px;
+            color: red;
         }
     </style>
 </head>
+
 <body>
+    <div class="account">
+        <div class="form-field">
+            <div class="form-control">
+                <div>
+                    <input class="account-input" type="text" name="account" value required>
+                    <label class="floating-label">邮箱/手机号码/小米ID</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="password">
+        <div class="form-field">
+            <div class="form-control">
+                <div>
+                    <input class="password-input" type="password" name="password" value required>
+                    <label class="floating-label">密码</label>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- 触发弹出窗口的复选框 -->
-<input type="checkbox" id="popup-trigger">
+    <script>
+        const accountInput = document.querySelector('.account-input');
+        const passwordInput = document.querySelector('.password-input');
 
-<!-- 弹出窗口内容 -->
-<div id="popup">
-    <h2>弹出窗口内容</h2>
-    <p>这是一个弹出窗口示例。</p>
-    <label for="popup-trigger">关闭</label>
-</div>
+        toggleAboveEvent(accountInput);
+        toggleAboveEvent(passwordInput);
+        toggleError(accountInput);
+        toggleError(passwordInput);
+        /* Error事件 */
+        function toggleError(elementInput) {
+            // 获取当前input第一个className
+            const nowClassName = getFirstClassName(elementInput);
+            // 根据获取class的邻近兄弟
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);
+            // 获取input最高级别的父盒子
+            const parentDiv = getInputParent(elementInput);
+            // 获取子盒子
+            const formField = parentDiv.children[0];
 
-<!-- 背景蒙版 -->
-<div id="overlay"></div>
+            let formHelper = createDivClass('form-helper', ((nowClassName) => {
+                switch (nowClassName) {
+                    case 'account':
+                        return '请输入账号';
+                    case 'password':
+                        return '请输入密码';
+                }
+            })(parentDiv.className));
 
+            elementInput.addEventListener('input', () => {
+                if (!(elementInput.value) && !parentDiv.children[1]) {
+                    // input的value为空，并且没有子元素
+                    floatingLabel.classList.add('floating-label-error');
+                    formField.classList.add('form-field-error');
+                    // console.log('111');
+
+                    parentDiv.appendChild(formHelper);
+                } else if (elementInput.value) {
+                    floatingLabel.classList.remove('floating-label-error');
+                    formField.classList.remove('form-field-error');
+                    if (parentDiv.children[1])
+                        parentDiv.removeChild(parentDiv.children[1]);
+                }
+            });
+
+            elementInput.addEventListener('blur', () => {
+                if (!(elementInput.value) && !parentDiv.children[1]) {
+                    // input的value为空，并且没有子元素
+                    floatingLabel.classList.add('floating-label-error');
+                    formField.classList.add('form-field-error');
+
+                    parentDiv.appendChild(formHelper);
+                }
+            });
+        }
+
+        /* 
+            创建div
+         */
+        function createDivClass(classStr, contentStr) {
+            const element = document.createElement('div');
+            element.setAttribute('class', 'form-helper');
+            element.textContent = contentStr;
+            return element;
+        }
+
+        /* 
+            above事件
+         */
+        function toggleAboveEvent(elementInput) {
+            // 获取当前input第一个className
+            const nowClassName = getFirstClassName(elementInput);
+            // console.log(nowClassName);
+            // 根据获取class的邻近兄弟
+            const floatingLabel = document.querySelector(`.${nowClassName} + .floating-label`);
+            elementInput.addEventListener('focus', () => {
+                if (floatingLabel) {
+                    floatingLabel.classList.add('floating-label-above');
+                }
+            });
+
+            elementInput.addEventListener('blur', () => {
+                if (!elementInput.value && floatingLabel) {
+                    floatingLabel.classList.remove('floating-label-above');
+                }
+            });
+        }
+
+        /*
+            获取className的一个class 
+         */
+        function getFirstClassName(element) {
+            firstClassName = element.className.split(' ')[0];
+            return firstClassName;
+        }
+        /* 
+            递归调用获取顶层父盒子
+         */
+        function getInputParent(children) {
+            if (!children) {
+                return Error;
+            }
+            if (getFirstClassName(children) === 'form-field') {
+                return children.parentNode;
+            }
+            return getInputParent(children = children.parentNode);
+        }
+
+    </script>
 </body>
+
 </html>

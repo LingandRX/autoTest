@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="n1">
+        <div class="n2">
+            <div class="n3">
+                <div class="n4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let n = document.querySelector('.n4');
+        let parent = null;
+
+
+        function getParent(e) {
+            let tmp = e;
+            if (tmp.className === 'n1') {
+                // console.log(tmp);
+                return tmp;
+            }
+            // console.log(tmp);
+            return getParent(tmp = tmp.parentNode);
+        }
+        console.log(getParent(n));
+
+    </script>
+</body>
+
+</html>
