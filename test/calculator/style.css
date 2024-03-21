@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    width: 400px;
+    margin: 100px auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(243, 243, 243);
+}
+
+.show {
+    height: 100px;
+    width: calc(100% - 40px);
+    margin: 20px;
+    background-color: #fff;
+    position: relative;
+}
+
+.now-count {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 20px;
+    direction: rtl;
+    font-size: 26px;
+    overflow: hidden;
+}
+
+.key-in {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 500px;
+    text-align: center;
+    /* background-color: rgb(243, 243, 243); */
+}
+
+.key {
+    width: 20%;
+    height: 50px;
+    line-height: calc(50px - 20px);
+    vertical-align: middle;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    /* 鼠标样式为默认 */
+    cursor: default;
+    /* 禁止选中文本 */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.key:hover {
+    background-color: rgb(252, 252, 252);
+}
+
+.key:active {
+    background-color: rgb(249, 249, 249);
+}
+
+.key:focus {
+    background-color: rgb(252, 252, 252);
+}
+
