@@ -1,8 +1,3 @@
-let globalNumber = '';
-let prevNumber = 0;
-let nextNumber = 0;
-let result = 0;
-
 const myNumber = (function () {
     // 使用Symbol生成唯一指定标识
     let _globalNumber = Symbol('globalNumber');
@@ -59,17 +54,21 @@ const myNumber = (function () {
         setSymbol(newSymbol = 'none') {
             this[_symbol] = newSymbol;
         }
+
+        isOperation(string) {
+            return this[_symbol] === string ? true : false;
+        }
     }
 
     return myNumber;
 })();
 
-
 let e = new myNumber();
 /**
  * 为计算器的按键绑定监听事件
+ * 匿名函数立即执行
  */
-function setKeyEvent() {
+(function setKeyEvent() {
     const keyLists = document.querySelectorAll('.key');
     console.log(keyLists);
 
@@ -79,28 +78,27 @@ function setKeyEvent() {
             checkNumber(key);
         })
     });
-}
+})();
 
 /**
  * 根据按键触发功能
- * @param {Element} key 
+ * @param {Element} key
 */
-function checkNumber(key) {
-    const resultPreview = document.querySelector('.result-preview');
+function checkNumber(key) { 
     if (key.className.split(' ')[1] === 'number') {
-        enterNumber(key, resultPreview);
-    } else if (key.className.split(' ')[1] === 'decimal') {
-        console.log('is decimal');
+        enterNumber(key);
     } else if (key.className.split(' ')[1] === 'equal') {
-        equalNumber(key, resultPreview);
+        equalNumber(key);
     } else if (key.className.split(' ')[1] === 'add') {
-        addNumber(key, resultPreview);
+        useValueCalculate(key, 'add');
     } else if (key.className.split(' ')[1] === 'division') {
-        divisionNumber(key, resultPreview);
+        useValueCalculate(key, 'division');
     } else if (key.className.split(' ')[1] === 'subtract') {
-        subtractNumber(key, resultPreview);
+        useValueCalculate(key, 'subtract');
+    } else if (key.className.split(' ')[1] === 'multiply') {
+        useValueCalculate(key, 'multiply');
     } else if (key.className.split(' ')[1] === 'clean' || key.className.split(' ')[1] === 'clean-error') {
-        cleanNumber(key, resultPreview);
+        cleanNumber(key);
     } else {
         console.log('not number');
     }
@@ -112,20 +110,21 @@ function checkNumber(key) {
  * @param {String} character
  * @returns 
  */
-function displayKeyCharacter(element, character) {
-    if (!element && !character) {
+function displayKeyCharacter(character) {
+    const resultPreview = document.querySelector('.result-preview');
+    if (!resultPreview && !character) {
         return '结果为空';
     }
     if (character === 'ERROR') {
         globalNumber = '';
-        element.textContent = 'ERROR';;
+        resultPreview.textContent = 'ERROR';;
         return;
     }
 
-    element.textContent = character;
+    resultPreview.textContent = character;
 }
 /**
- * 异步计算函数
+ * 计算函数
  * @param {number} prev - 第一个数
  * @param {number} next - 第二个数
  * @param {string} symbo - 计算符号
@@ -139,16 +138,16 @@ function count(prev, next, symbol) {
     prev = Number(prev);
     next = Number(next);
     switch (symbol) {
-        case 'x':
+        case 'multiply':
             tmp = prev * next;
             break;
-        case "/":
-            tmp = prev * next;
+        case "division":
+            tmp = prev / next;
             break;
         case 'add':
             tmp = prev + next;
             break;
-        case '-':
+        case 'subtract':
             tmp = prev - next;
             break;
         default:
@@ -158,61 +157,60 @@ function count(prev, next, symbol) {
     return tmp;
 }
 
-/* const test = document.querySelector('.test');
-test.addEventListener('click', async () => {
-    try {
-        let tmp = await count(1, 2, '+');
-        console.log(tmp);
-    } catch (error) {
-        console.log(error);
-    }
-}); */
-
-setKeyEvent();
-
-function enterNumber(key, resultPreview) {
+function enterNumber(key) {
     e.setGlobal(e.getGlobal() + key.textContent);
     console.log(`e.global = ${e.getGlobal()}`);
-    displayKeyCharacter(resultPreview, e.getGlobal());
+    displayKeyCharacter(e.getGlobal());
 }
 
-function addNumber(key, resultPreview) {
+function useValueCalculate(key, string) {
     if (!e.getSymbol()) {
         e.setPrev(e.getGlobal());
         e.setGlobal(e.getGlobal() + key.textContent);
-        e.setSymbol('add');
-        displayKeyCharacter(resultPreview, e.getGlobal());
+        e.setSymbol(`${string}`);
+        displayKeyCharacter(e.getGlobal());
     } else {
-        let next = e.getGlobal().split('+')[1];
+        let tmp = '';
+        switch (string) {
+            case 'add': tmp = '+';
+                break;
+            case 'subtract': tmp = '-';
+                break;
+            case 'division': tmp = '÷';
+                break;
+            case 'multiply': tmp = 'x';
+                break;
+        }
+        let next = e.getGlobal().split(`${tmp}`)[1];
         e.setNext(next);
         let result = count(e.getPrev(), e.getNext(), e.getSymbol());
         e.setResult(result);
-        
+
         e.setSymbol('');
         e.setGlobal(e.getResult());
-        displayKeyCharacter(resultPreview, e.getResult());
+
+        console.log(e.getPrev(), e.getNext());
+        displayKeyCharacter(e.getResult());
     }
 }
 
-function divisionNumber(key, resultPreview) {
-    console.log('----');
-}
-
-function subtractNumber(key, resultPreview) {
-    console.log('-1--');
-}
-
-function cleanNumber(key, resultPreview) {
+function cleanNumber(key) {
     e.setGlobal('0');
     e.setNext(0);
     e.setPrev(0);
     e.setSymbol('');
     e.setResult(0);
-    displayKeyCharacter(resultPreview, e.getGlobal());
+    displayKeyCharacter(e.getGlobal());
 }
 
-function equalNumber(key, resultPreview) {
-    if (e.getSymbol() === 'add') {
-        addNumber(key, resultPreview);
+function equalNumber(key) {
+    if (e.isOperation('add')) {
+        useValueCalculate(key, 'add');
+    } else if (e.isOperation('division')) {
+        useValueCalculate(key, 'division');
+    } else if (e.isOperation('subtract')) {
+        useValueCalculate(key, 'subtract');
+    } else if (e.isOperation('multiply')) {
+        useValueCalculate(key, 'multiply');
     }
 }
