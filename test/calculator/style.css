@@ -25,9 +25,9 @@
     bottom: 0;
     width: 100%;
     padding: 0 20px;
-    direction: rtl;
+    /* direction: rtl; */
     font-size: 26px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .key-in {
