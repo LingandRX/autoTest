@@ -65,8 +65,7 @@ const myNumber = (function () {
 
 let e = new myNumber();
 /**
- * 为计算器的按键绑定监听事件
- * 匿名函数立即执行
+ * 为计算器的按键绑定监听事件，匿名函数立即执行
  */
 (function setKeyEvent() {
     const keyLists = document.querySelectorAll('.key');
@@ -82,13 +81,13 @@ let e = new myNumber();
 
 /**
  * 根据按键触发功能
- * @param {Element} key
+ * @param {Element} key-按键
 */
 function checkNumber(key) { 
     if (key.className.split(' ')[1] === 'number') {
         enterNumber(key);
     } else if (key.className.split(' ')[1] === 'equal') {
-        equalNumber(key);
+        equalNumber(e, key);
     } else if (key.className.split(' ')[1] === 'add') {
         useValueCalculate(key, 'add');
     } else if (key.className.split(' ')[1] === 'division') {
@@ -98,7 +97,7 @@ function checkNumber(key) {
     } else if (key.className.split(' ')[1] === 'multiply') {
         useValueCalculate(key, 'multiply');
     } else if (key.className.split(' ')[1] === 'clean' || key.className.split(' ')[1] === 'clean-error') {
-        cleanNumber(key);
+        cleanNumber(e);
     } else {
         console.log('not number');
     }
@@ -106,9 +105,7 @@ function checkNumber(key) {
 
 /**
  * 在结果框中显示按键的结果
- * @param {Element} element
  * @param {String} character
- * @returns 
  */
 function displayKeyCharacter(character) {
     const resultPreview = document.querySelector('.result-preview');
@@ -157,12 +154,21 @@ function count(prev, next, symbol) {
     return tmp;
 }
 
+/**
+ * 输入数字
+ * @param {Element} key 
+ */
 function enterNumber(key) {
     e.setGlobal(e.getGlobal() + key.textContent);
-    console.log(`e.global = ${e.getGlobal()}`);
+    // console.log(`e.global = ${e.getGlobal()}`);
     displayKeyCharacter(e.getGlobal());
 }
 
+/**
+ * 四则运算
+ * @param {Element} key 
+ * @param {String} string 
+ */
 function useValueCalculate(key, string) {
     if (!e.getSymbol()) {
         e.setPrev(e.getGlobal());
@@ -194,7 +200,11 @@ function useValueCalculate(key, string) {
     }
 }
 
-function cleanNumber(key) {
+/**
+ * 清除计算
+ * @param {myNumber} e-Number类
+ */
+function cleanNumber(e) {
     e.setGlobal('0');
     e.setNext(0);
     e.setPrev(0);
@@ -203,7 +213,12 @@ function cleanNumber(key) {
     displayKeyCharacter(e.getGlobal());
 }
 
-function equalNumber(key) {
+/**
+ * 等号根据计算符号计算
+ * @param {myNumber} e-Number类
+ * @param {Element} key
+ */
+function equalNumber(e, key) {
     if (e.isOperation('add')) {
         useValueCalculate(key, 'add');
     } else if (e.isOperation('division')) {
